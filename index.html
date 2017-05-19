@@ -9,7 +9,10 @@
 <body ng-controller="taskCtrl">
 
 	<h1>Todo List</h1>
-	<p>{{ message }}</p>
+
+	<div class="tasks" ng-repeat="task in tasks">
+		<p>{{ task.title }}</p>
+	</div>
 
 </body>
 </html>
