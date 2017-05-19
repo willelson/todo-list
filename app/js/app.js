@@ -1,9 +1,7 @@
 angular
 	.module("todoList", [])
 	.controller("taskCtrl", function($scope) {
-		$scope.message = "Hello, World!";
 		$scope.tasks = tasks;
-		console.log($scope.tasks.length);
 	});
 
 
