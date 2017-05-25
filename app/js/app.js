@@ -2,8 +2,15 @@ angular
 	.module("todoList", [])
 	.controller("taskCtrl", function($scope) {
 		$scope.tasks = tasks;
-	});
+        $scope.activeTask = {};
+        $scope.setActiveTask = setActiveTask;
 
+
+        function setActiveTask(task) {
+            console.log(task.title);
+            $scope.activeTask = task;
+        }
+	});
 
 
 var tasks = [
