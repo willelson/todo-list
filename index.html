@@ -6,15 +6,35 @@
 	<script type="text/javascript" src="app/bower_components/angular-mocks/angular-mocks.js"></script>
 	<script type="text/javascript" src="app/js/app.js"></script>
 	<link rel="stylesheet" type="text/css" href="app/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="app/css/style.css">
 </head>
 <body ng-controller="taskCtrl">
 
 	<div class="container">
 		<h1 class="text-center">Todo List</h1>
 
-		<div class="tasks" ng-repeat="task in tasks">
-			<p>{{ task.title }}</p>
+
+		<div ng-repeat="task in tasks">
+			<div class="container task">
+				<div class="row">
+					<div class="col-xs-10">
+						<h4>{{ task.title }}</h4>
+					</div>
+					<div class="col-xs-2 pull-right taskControls">
+						<h4>
+							<span class="glyphicon glyphicon-edit taskControl"></span>
+							<span class="glyphicon glyphicon-trash taskControl"></span>
+						</h4>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<p>{{ task.description }}</p>
+					</div>	
+				</div>
+			</div>
 		</div>
+
 	</div>
 
 </body>
