@@ -29,7 +29,8 @@
 						<h4>
 							<span class="glyphicon glyphicon-edit taskControl"
 								  data-toggle="modal" 
-								  data-target="#editTask">		  
+								  data-target="#editTask"
+								  ng-click="setActiveTask(task)">		  
 							</span>
 							<span class="glyphicon glyphicon-trash taskControl"></span>
 						</h4>
@@ -57,14 +58,16 @@
 								<label id="task_title_label" for="task_title">Title</label>
 								<input type="text" 
 								class="form-control"
-								id="task_title"/>
+								id="task_title"
+								value="{{ activeTask.title }}"/>
 							</div>
 
 							<div class="form-group">
 								<label for="task_description">Description</label>
 								<input type="text" 
 								class="form-control"
-								id="task_description"/>
+								id="task_description"
+								value="{{ activeTask.description }}"/>
 							</div>
 						</form>
 
