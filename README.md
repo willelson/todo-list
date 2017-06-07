@@ -1,6 +1,6 @@
 # Todo list
 
-This work in progress will be a CRUD todo list that will consume a restful flask api I am also currently working on.
+This work in progress will be a CRUD todo list that will consume a [restful flask api](https://github.com/willelson/todo-list-API) I am also currently working on.
 
 
 ### Install and run
