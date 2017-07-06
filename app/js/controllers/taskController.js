@@ -13,6 +13,25 @@ angular
 
         $scope.updateActiveTask = updateActiveTask;
 
+
+        $scope.modalPopup = function() {
+            modal = $uibModal.open({
+                templateUrl: 'taskModal.html',
+                scope: $scope
+            });
+
+            $scope.modalInstance = modal;
+
+            return modal.result
+        };
+
+        $scope.dismiss = function() {
+            $scope.modalInstance.dismiss();
+        }
+
+
+
+
         function setActiveTask(task) {
             console.log(task.title);
             $scope.activeTask = task;
