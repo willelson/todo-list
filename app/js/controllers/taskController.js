@@ -1,6 +1,6 @@
 angular
-	.module("todoList")
-	.controller("taskCtrl", function($scope, $http) {
+	.module("todoList", ['ui.bootstrap'])
+	.controller("taskCtrl", function($scope, $http, $uibModal) {
         var url = server + 'tasks';
 
         $http.get(url).
