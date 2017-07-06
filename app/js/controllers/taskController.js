@@ -49,7 +49,7 @@ angular
                             $scope.tasks[i] = task;
                         }
                     }
-            })
+                })
                 .error(function (data, status, header, config) {
                     console.log(status);
             });
