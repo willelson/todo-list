@@ -1,6 +1,6 @@
 angular
-	.module("todoList")
-	.controller("taskCtrl", function($scope, $http) {
+	.module("todoList", ['ui.bootstrap'])
+	.controller("taskCtrl", function($scope, $http, $uibModal) {
         var url = server + 'tasks';
 
         $http.get(url).
@@ -12,6 +12,25 @@ angular
         $scope.setActiveTask = setActiveTask;
 
         $scope.updateActiveTask = updateActiveTask;
+
+
+        $scope.modalPopup = function() {
+            modal = $uibModal.open({
+                templateUrl: 'taskModal.html',
+                scope: $scope
+            });
+
+            $scope.modalInstance = modal;
+
+            return modal.result
+        };
+
+        $scope.dismiss = function() {
+            $scope.modalInstance.dismiss();
+        }
+
+
+
 
         function setActiveTask(task) {
             console.log(task.title);
@@ -30,7 +49,7 @@ angular
                             $scope.tasks[i] = task;
                         }
                     }
-            })
+                })
                 .error(function (data, status, header, config) {
                     console.log(status);
             });
