@@ -1,5 +1,5 @@
 angular
-	.module("todoList", [])
+	.module("todoList", ['ui.bootstrap'])
 
 
 
