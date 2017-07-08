@@ -2,14 +2,16 @@ angular
 	.module("todoList")
 	.controller("taskCtrl", function($scope, $http, $uibModal) {
         var url = server + 'tasks';
-
+        $scope.tasks;
         $http.get(url).
             then(function(response) {
                 $scope.tasks = response.data.tasks;
             });
 
         $scope.activeTask = {};
+        $scope.editTask = {};
         $scope.setActiveTask = setActiveTask;
+        
 
         $scope.updateActiveTask = function(title, description, task_id) {
             console.log("Updating active task...");
@@ -19,11 +21,9 @@ angular
 
             $http.put(url, data)
                 .then(function (response) {
-                    console.log("response: " + response.data);
                     for (i = 0; i < $scope.tasks.length; i++) {
                         if ($scope.tasks[i].id == task_id) {
-                            $scope.tasks[i].title = data.title;
-                            $scope.tasks[i].description = data.description;
+                            $scope.tasks[i] = response.data;
                         }
                     }
                 })
@@ -50,6 +50,7 @@ angular
 
         function setActiveTask(task) {
             $scope.activeTask = task;
+            $scope.editTask = angular.copy($scope.activeTask);
         }
 
 
