@@ -1,5 +1,5 @@
 angular
-	.module("todoList", ['ui.bootstrap'])
+	.module("todoList")
 	.controller("taskCtrl", function($scope, $http, $uibModal) {
         var url = server + 'tasks';
 
@@ -11,7 +11,26 @@ angular
         $scope.activeTask = {};
         $scope.setActiveTask = setActiveTask;
 
-        $scope.updateActiveTask = updateActiveTask;
+        $scope.updateActiveTask = function(title, description, task_id) {
+            console.log("Updating active task...");
+            var url = server + 'task/' + task_id
+            var data = {"title": title,
+                        "description": description}
+
+            $http.put(url, data)
+                .then(function (response) {
+                    console.log("response: " + response.data);
+                    for (i = 0; i < $scope.tasks.length; i++) {
+                        if ($scope.tasks[i].id == task_id) {
+                            $scope.tasks[i].title = data.title;
+                            $scope.tasks[i].description = data.description;
+                        }
+                    }
+                })
+                .catch(function (data) {
+                    console.log(data);
+                });
+        };
 
 
         $scope.modalPopup = function() {
@@ -21,7 +40,6 @@ angular
             });
 
             $scope.modalInstance = modal;
-
             return modal.result
         };
 
@@ -30,33 +48,10 @@ angular
         }
 
 
-
-
         function setActiveTask(task) {
-            console.log(task.title);
             $scope.activeTask = task;
         }
 
-        function updateActiveTask(title, description, task_id) {
-            var url = server + 'task/' + task_id
-            var data = {"title": title,
-                        "description": description}
-
-            $http.put(url, data)
-                .success(function (data, status, headers, config) {
-                    for (i = 0; i < $scope.tasks.length; i++) {
-                        if ($scope.tasks[i].id == task.id) {
-                            $scope.tasks[i] = task;
-                        }
-                    }
-                })
-                .error(function (data, status, header, config) {
-                    console.log(status);
-            });
-
-            
-
-        }
 
 	});
 
