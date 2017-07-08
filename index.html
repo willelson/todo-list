@@ -51,15 +51,15 @@
 						<label id="task_title_label" for="task_title">Title</label>
 						<input type="text" 
 							   class="form-control"
-							   name='title'
-							   value="{{ activeTask.title }}"/>
+							   ng-model=editTask.title
+							   value="{{ editTask.title }}"/>
 					</div>
 					<div class="form-group">
 						<label for="task_description">Description</label>
 						<input type="text" 
 							   class="form-control"
-							   name='decription'
-							   value="{{ activeTask.description }}"/>
+							   ng-model=editTask.description
+							   value="{{ editTask.description }}"/>
 					</div>
 				</form>
 			</div>
@@ -71,7 +71,7 @@
 				<button id="CreateTask" 
 						type="button" 
 						class="btn btn-primary"
-						ng-click="updateActiveTask('Garlic and herb dip', 'description...', activeTask.id)">
+						ng-click="updateActiveTask(editTask.title, editTask.description, activeTask.id)">
 					Save changes
 				</button>
 			</div>
