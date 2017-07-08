@@ -26,6 +26,7 @@ angular
                             $scope.tasks[i] = response.data;
                         }
                     }
+                    $scope.dismiss();
                 })
                 .catch(function (data) {
                     console.log(data);
