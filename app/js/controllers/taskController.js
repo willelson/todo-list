@@ -11,7 +11,6 @@ angular
         $scope.activeTask = {};
         $scope.editTask = {};
         $scope.setActiveTask = setActiveTask;
-        
 
         $scope.updateActiveTask = function(title, description, task_id) {
             console.log("Updating active task...");
@@ -34,9 +33,13 @@ angular
         };
 
 
-        $scope.modalPopup = function() {
+        $scope.modalPopup = function(type) {
+            var template;
+            if (type === "new") { template = 'addModal.html'; }
+            else { template = 'editModal.html'; }
+
             modal = $uibModal.open({
-                templateUrl: 'taskModal.html',
+                templateUrl: template,
                 scope: $scope
             });
 
@@ -52,6 +55,22 @@ angular
         function setActiveTask(task) {
             $scope.activeTask = task;
             $scope.editTask = angular.copy($scope.activeTask);
+        }
+
+
+        $scope.newTask = function(title, description) {
+            var url = server + 'task';
+            var data = {"title": title,
+                        "description": description}
+
+            $http.post(url, data)
+                .then(function (response) {
+                    $scope.tasks.push(response.data);
+                    $scope.dismiss();
+                })
+                .catch(function (data) {
+                    console.log(data);
+                });
         }
 
 
